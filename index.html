@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tier List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #3f3e3e;
+            color: rgb(0, 0, 0);
+        }
+        .tier-list {
+            width: 80%;
+            max-width: 600px;
+        }
+        .tier {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        .tier div {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            flex-grow: 1;
+            min-height: 50px;
+            padding: 5px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 5px;
+        }
+        .items {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .item {
+            padding: 5px;
+            border-radius: 3px;
+            cursor: grab;
+        }
+        .item img {
+            width: 50px;
+            height: 50px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Tier List</h2>
+    <div class="tier-list">
+        <div class="tier" style="background: red;">S <div class="dropzone"></div></div>
+        <div class="tier" style="background: orange;">A <div class="dropzone"></div></div>
+        <div class="tier" style="background: yellow;">B <div class="dropzone"></div></div>
+        <div class="tier" style="background: green;">C <div class="dropzone"></div></div>
+        <div class="tier" style="background: blue;">D <div class="dropzone"></div></div>
+    </div>
+    
+    <h3>Itens</h3>
+    <div class="items">
+        <div class="items dropzone"></div>
+        <div class="item" draggable="true"><img src="imagens/image1.jpg" alt="Imagem 1"></div>
+        <div class="item" draggable="true"><img src="imagens/image2.jpeg" alt="Imagem 2"></div>
+        <div class="item" draggable="true"><img src="imagens/image3.jpeg" alt="Imagem 3"></div>
+        <div class="item" draggable="true"><img src="imagens/image4.jpg" alt="Imagem 4"></div>
+        <div class="item" draggable="true"><img src="imagens/image5.jpg" alt="Imagem 5"></div>
+        <div class="item" draggable="true"><img src="imagens/image6.jpg" alt="Imagem 6"></div>
+        <div class="item" draggable="true"><img src="imagens/image7.jpeg" alt="Imagem 7"></div>
+    </div>
+    <script>
+        const items = document.querySelectorAll('.item');
+        const dropzones = document.querySelectorAll('.dropzone');
+        const initialContainer = document.querySelector('.items');
+
+        items.forEach(item => {
+            item.addEventListener('dragstart', () => {
+                item.classList.add('dragging');
+            });
+            item.addEventListener('dragend', () => {
+                item.classList.remove('dragging');
+                
+                if (!item.parentElement.classList.contains('dropzone')) {
+                    initialContainer.appendChild(item);
+                }
+            });
+        });
+
+        dropzones.forEach(zone => {
+            zone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                const draggingItem = document.querySelector('.dragging');
+                zone.appendChild(draggingItem);
+            });
+        });
+    </script>
+</body>
+</html>
