@@ -12,6 +12,8 @@
             align-items: center;
             background-color: #3f3e3e;
             color: rgb(0, 0, 0);
+            margin: 0;
+            padding: 20px;
         }
         .tier-list {
             width: 80%;
@@ -28,28 +30,39 @@
         .tier div {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
+            align-items: center;
+            gap: 5px;
             flex-grow: 1;
             min-height: 50px;
             padding: 5px;
             background: rgba(255, 255, 255, 0.8);
             border-radius: 5px;
         }
+        .items-container {
+            width: 80%;
+            max-width: 600px;
+            margin-top: 20px;
+        }
         .items {
             display: flex;
             flex-wrap: wrap;
             gap: 10px;
-            margin-top: 20px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
         }
         .item {
-            padding: 5px;
-            border-radius: 3px;
             cursor: grab;
         }
         .item img {
-            width: 50px;
-            height: 50px;
+            width: 80px;
+            height: 80px;
             border-radius: 5px;
+            display: block;
+        }
+        h2, h3 {
+            color: white;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -63,16 +76,22 @@
         <div class="tier" style="background: blue;">D <div class="dropzone"></div></div>
     </div>
     
-    <h3>Itens</h3>
-    <div class="items">
-        <div class="items dropzone"></div>
-        <div class="item" draggable="true"><img src="imagens/image1.jpg" alt="Imagem 1"></div>
-        <div class="item" draggable="true"><img src="imagens/image2.jpeg" alt="Imagem 2"></div>
-        <div class="item" draggable="true"><img src="imagens/image3.jpeg" alt="Imagem 3"></div>
-        <div class="item" draggable="true"><img src="imagens/image4.jpg" alt="Imagem 4"></div>
-        <div class="item" draggable="true"><img src="imagens/image5.jpg" alt="Imagem 5"></div>
-        <div class="item" draggable="true"><img src="imagens/image6.jpg" alt="Imagem 6"></div>
-        <div class="item" draggable="true"><img src="imagens/image7.jpeg" alt="Imagem 7"></div>
+    <div class="items-container">
+        <h3>Itens</h3>
+        <div class="items dropzone">
+            <div class="item" draggable="true"><img src="imagens/image1.png" alt="Imagem 1"></div>
+            <div class="item" draggable="true"><img src="imagens/image2.jpg" alt="Imagem 2"></div>
+            <div class="item" draggable="true"><img src="imagens/image3.png" alt="Imagem 3"></div>
+            <div class="item" draggable="true"><img src="imagens/image4.jpg" alt="Imagem 4"></div>
+            <div class="item" draggable="true"><img src="imagens/image5.jpg" alt="Imagem 5"></div>
+            <div class="item" draggable="true"><img src="imagens/image6.jpg" alt="Imagem 6"></div>
+            <div class="item" draggable="true"><img src="imagens/image7.jpg" alt="Imagem 7"></div>
+            <div class="item" draggable="true"><img src="imagens/image8.jpg" alt="Imagem 8"></div>
+            <div class="item" draggable="true"><img src="imagens/image9.jpg" alt="Imagem 9"></div>
+            <div class="item" draggable="true"><img src="imagens/image10.jpg" alt="Imagem 10"></div>
+            <div class="item" draggable="true"><img src="imagens/image11.jpg" alt="Imagem 11"></div>
+            <div class="item" draggable="true"><img src="imagens/image12.jpg" alt="Imagem 12"></div>
+        </div>
     </div>
     <script>
         const items = document.querySelectorAll('.item');
