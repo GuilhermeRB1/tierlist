@@ -1,83 +1,203 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tier List</title>
     <style>
+        :root {
+            --tier-s: #ff7b7b;
+            --tier-a: #ffb366;
+            --tier-b: #ffe066;
+            --tier-c: #8ce08c;
+            --tier-d: #7b9cff;
+            --bg-dark: #2d2d2d;
+            --bg-light: #f5f5f5;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-color: #3f3e3e;
-            color: rgb(0, 0, 0);
+            background-color: var(--bg-dark);
+            color: white;
             margin: 0;
             padding: 20px;
+            min-height: 100vh;
         }
+
+        h2,
+        h3 {
+            margin-bottom: 15px;
+            text-align: center;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            margin-top: 0;
+            color: #fff;
+        }
+
+        h3 {
+            font-size: 1.5rem;
+            color: #ddd;
+        }
+
         .tier-list {
-            width: 80%;
-            max-width: 600px;
+            width: 90%;
+            max-width: 800px;
         }
+
         .tier {
             display: flex;
             align-items: center;
-            padding: 10px;
-            margin: 5px 0;
-            border-radius: 5px;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 8px;
             font-weight: bold;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
         }
+
+        .tier:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
         .tier div {
             display: flex;
             flex-wrap: wrap;
             align-items: center;
-            gap: 5px;
+            gap: 2px;
             flex-grow: 1;
-            min-height: 50px;
+            min-height: 60px;
             padding: 5px;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 6px;
+            margin-left: 10px;
         }
+
+        .tier[style*="red"] {
+            background: linear-gradient(135deg, var(--tier-s), #ff5252);
+        }
+
+        .tier[style*="orange"] {
+            background: linear-gradient(135deg, var(--tier-a), #ff8c42);
+        }
+
+        .tier[style*="yellow"] {
+            background: linear-gradient(135deg, var(--tier-b), #ffd166);
+        }
+
+        .tier[style*="green"] {
+            background: linear-gradient(135deg, var(--tier-c), #06d6a0);
+        }
+
+        .tier[style*="blue"] {
+            background: linear-gradient(135deg, var(--tier-d), #5a7dff);
+        }
+
         .items-container {
-            width: 80%;
-            max-width: 600px;
-            margin-top: 20px;
+            width: 90%;
+            max-width: 800px;
+            margin-top: 30px;
         }
+
         .items {
             display: flex;
             flex-wrap: wrap;
-            gap: 10px;
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.8);
-            border-radius: 10px;
+            gap: 15px;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            justify-content: center;
         }
+
         .item {
             cursor: grab;
+            transition: var(--transition);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin: 0;
+            flex-shrink: 0;
         }
+
+        .item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
         .item img {
             width: 80px;
             height: 80px;
-            border-radius: 5px;
+            object-fit: cover;
+            border-radius: 4px;
             display: block;
+            border: 2px solid rgba(255, 255, 255, 0.8);
+            margin: 0;
         }
-        h2, h3 {
+
+        .dragging {
+            opacity: 0.5;
+            transform: scale(0.95);
+        }
+
+        .tier-label {
+            min-width: 30px;
+            text-align: center;
             color: white;
-            margin-bottom: 10px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        @media (max-width: 600px) {
+            .item img {
+                width: 60px;
+                height: 60px;
+            }
+
+            .tier {
+                font-size: 1rem;
+                padding: 8px;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
+
 <body>
-    <h2>Tier List</h2>
+    <h2>📊 Tier List</h2>
     <div class="tier-list">
-        <div class="tier" style="background: red;">S <div class="dropzone"></div></div>
-        <div class="tier" style="background: orange;">A <div class="dropzone"></div></div>
-        <div class="tier" style="background: yellow;">B <div class="dropzone"></div></div>
-        <div class="tier" style="background: green;">C <div class="dropzone"></div></div>
-        <div class="tier" style="background: blue;">D <div class="dropzone"></div></div>
+        <div class="tier" style="background: red;"><span class="tier-label">S</span>
+            <div class="dropzone"></div>
+        </div>
+        <div class="tier" style="background: orange;"><span class="tier-label">A</span>
+            <div class="dropzone"></div>
+        </div>
+        <div class="tier" style="background: yellow;"><span class="tier-label">B</span>
+            <div class="dropzone"></div>
+        </div>
+        <div class="tier" style="background: green;"><span class="tier-label">C</span>
+            <div class="dropzone"></div>
+        </div>
+        <div class="tier" style="background: blue;"><span class="tier-label">D</span>
+            <div class="dropzone"></div>
+        </div>
     </div>
-    
+
     <div class="items-container">
-        <h3>Itens</h3>
+        <h3>🖼️ Itens para Classificar</h3>
         <div class="items dropzone">
             <div class="item" draggable="true"><img src="imagens/image1.png" alt="Imagem 1"></div>
             <div class="item" draggable="true"><img src="imagens/image2.jpg" alt="Imagem 2"></div>
@@ -93,24 +213,23 @@
             <div class="item" draggable="true"><img src="imagens/image12.jpg" alt="Imagem 12"></div>
         </div>
     </div>
+
     <script>
         const items = document.querySelectorAll('.item');
         const dropzones = document.querySelectorAll('.dropzone');
         const initialContainer = document.querySelector('.items');
-
         items.forEach(item => {
             item.addEventListener('dragstart', () => {
                 item.classList.add('dragging');
             });
             item.addEventListener('dragend', () => {
                 item.classList.remove('dragging');
-                
+
                 if (!item.parentElement.classList.contains('dropzone')) {
                     initialContainer.appendChild(item);
                 }
             });
         });
-
         dropzones.forEach(zone => {
             zone.addEventListener('dragover', (e) => {
                 e.preventDefault();
@@ -120,4 +239,5 @@
         });
     </script>
 </body>
+
 </html>
